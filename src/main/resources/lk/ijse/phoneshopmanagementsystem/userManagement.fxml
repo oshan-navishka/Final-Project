@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane stylesheets="@../../styles/items.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.phoneshopmanagementsystem.controller.UserManagementController">
+
+    <top>
+        <VBox style="-fx-background-color: #1e293b; -fx-padding: 20;">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: null;" text="❮❮❮❮" textAlignment="JUSTIFY" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Button>
+            <Label style="-fx-text-fill: #FFFC2E; -fx-font-size: 28; -fx-font-weight: bold;" text="User Management" />
+            <Label style="-fx-text-fill: white; -fx-font-size: 14; -fx-padding: 5 0 0 0;" text="Manage system users and permissions" />
+        </VBox>
+    </top>
+
+    <center>
+        <VBox style="-fx-background-color: #0f172a; -fx-padding: 30; -fx-spacing: 25;">
+
+            <VBox spacing="20" style="-fx-background-color: #1e293b; -fx-padding: 25; -fx-background-radius: 10;">
+                <Label style="-fx-text-fill: #FAD634; -fx-font-size: 18; -fx-font-weight: bold;" text="User Details" />
+
+                <GridPane hgap="20" vgap="15">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="150" />
+                        <ColumnConstraints minWidth="250" />
+                        <ColumnConstraints minWidth="150" />
+                        <ColumnConstraints minWidth="250" />
+                    </columnConstraints>
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="User ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                    <TextField fx:id="txtUserId" editable="false" promptText="Auto Generated" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-prompt-text-fill: #64748b;" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="Username:" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtUsername" promptText="Enter username" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-prompt-text-fill: #64748b;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="Email:" GridPane.columnIndex="2" />
+                    <TextField fx:id="txtEmail" promptText="Enter email" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-prompt-text-fill: #64748b;" GridPane.columnIndex="3" />
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                    <PasswordField fx:id="txtPassword" promptText="Enter password" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-prompt-text-fill: #64748b;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="Phone:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtPhone" promptText="Enter phone number" style="-fx-background-color: #0f172a; -fx-text-fill: white; -fx-prompt-text-fill: #64748b;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="Role:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                    <ComboBox fx:id="cmbRole" prefWidth="250" promptText="Select role" style="-fx-background-color: #0f172a; -fx-text-fill: white;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                    <Label style="-fx-text-fill: #94a3b8;" text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+               <ComboBox fx:id="cmbStatus" prefWidth="250.0" promptText="Select status" style="-fx-background-color: #0f172a; -fx-text-fill: white;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <padding><Insets top="10" /></padding>
+                    <Button fx:id="btnSave" onAction="#saveUser" styleClass="big-btn" text="Save User" />
+                    <Button fx:id="btnUpdate" onAction="#updateUser" style="-fx-background-color: #3b82f6;" styleClass="big-btn" text="Update User" />
+                    <Button fx:id="btnDelete" onAction="#deleteUser" style="-fx-background-color: red;" styleClass="big-btn" text="Delete User" />
+                    <Button fx:id="btnClear" onAction="#clearFields" style="-fx-background-color: gray;" styleClass="big-btn" text="Clear" />
+                </HBox>
+            </VBox>
+
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 14;" text="Search:" />
+                <TextField fx:id="txtSearch" onKeyReleased="#searchUser" prefWidth="300" promptText="Search by username, name or email" style="-fx-background-color: #1e293b; -fx-text-fill: white; -fx-prompt-text-fill: #64748b;" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnRefresh" onAction="#loadAllUsers" style="-fx-background-color: #474747;" styleClass="big-btn" text="Refresh" />
+            </HBox>
+
+            <TableView fx:id="tblUsers" layoutX="20" layoutY="20" prefHeight="300" prefWidth="600">
+                <columns>
+                    <TableColumn fx:id="colUserId" prefWidth="200.0" text="User ID" />
+                    <TableColumn fx:id="colUserName" prefWidth="350.0" text="User Name" />
+                    <TableColumn fx:id="colEmail" prefWidth="350.0" text="Email" />
+                    <TableColumn fx:id="colContactNo" prefWidth="350.0" text="Contact No" />
+                    <TableColumn fx:id="colRole" prefWidth="216.7999267578125" text="Role" />
+                </columns>
+            </TableView>
+
+        </VBox>
+    </center>
+
+</BorderPane>

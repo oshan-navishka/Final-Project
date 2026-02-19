@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/25" stylesheets="@../../styles/login.css" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lk.ijse.phoneshopmanagementsystem.controller.LoginController"
+            style="-fx-background-color: linear-gradient(to bottom, #1e293b, #0f172a);">
+
+    <StackPane AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+               AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <VBox alignment="CENTER" spacing="30" maxWidth="420" maxHeight="700">
+            <padding>
+                <Insets top="40" bottom="60" left="40" right="40"/>
+            </padding>
+
+            <ImageView fitHeight="120" fitWidth="200" preserveRatio="true">
+                <image>
+                    <Image url="@../../../images/sun-logo-22154493-removebg-preview.png"/>
+                </image>
+                <effect>
+                    <DropShadow color="#ff9500" radius="25"/>
+                </effect>
+            </ImageView>
+
+            <Label text="Smart Way Mobiles" textFill="#ffa500" alignment="CENTER">
+                <font>
+                    <Font name="Segoe UI Bold" size="36"/>
+                </font>
+            </Label>
+
+            <VBox alignment="CENTER" spacing="10">
+                <Label text="Welcome again!" textFill="WHITE"
+                       style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
+                <Label text="Please enter your details" textFill="#94a3b8"
+                       style="-fx-font-size: 16px;"/>
+            </VBox>
+
+            <VBox style="-fx-background-color: rgba(30,41,59,0.9); -fx-background-radius: 25;"
+                  spacing="25" alignment="CENTER" prefWidth="380">
+                <padding>
+                    <Insets top="40" bottom="40" left="40" right="40"/>
+                </padding>
+
+                <VBox spacing="8">
+                    <Label text="Username" textFill="#cbd5e1"
+                           style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+                    <TextField fx:id="usernameField" promptText="Enter username"
+                               styleClass="text-field" prefHeight="50"/>
+                </VBox>
+
+
+                <VBox spacing="8">
+                    <Label text="Password" textFill="#cbd5e1"
+                           style="-fx-font-weight: bold; -fx-font-size: 15px;"/>
+                    <PasswordField fx:id="passwordField" promptText="Enter password"
+                                   styleClass="text-field" prefHeight="50"/>
+                </VBox>
+
+                <HBox alignment="CENTER_RIGHT">
+                    <Hyperlink fx:id="chageDetails" onAction="#editeLoginDetails"
+                               text="Change Username &amp; Password?"
+                               style="-fx-text-fill: #ffa500; -fx-font-size: 14px;"/>
+                </HBox>
+
+                <Button fx:id="loginButton" onAction="#login" text="Log In"
+                        styleClass="login-button"
+                        prefHeight="55" prefWidth="300"
+                        style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+            </VBox>
+
+        </VBox>
+    </StackPane>
+</AnchorPane>

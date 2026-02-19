@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="850" prefWidth="1300" style="-fx-background-color: #0f172a;" stylesheets="@../../styles/Report.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.phoneshopmanagementsystem.controller.ReportController">
+
+    <top>
+        <VBox style="-fx-background-color: #1e293b; -fx-padding: 15 30;">
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="27.0" prefWidth="53.0" style="-fx-background-color: null;" text="❮❮❮❮" textAlignment="JUSTIFY" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="13.0" />
+                </font>
+            </Button>
+            <Label style="-fx-text-fill: #ffa500; -fx-font-size: 24px; -fx-font-weight: bold;" text="Sales Reports &amp; Analytics" />
+            <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 13px;" text="Detailed insights into your business performance" />
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #0f172a;">
+            <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #0f172a;">
+
+                <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 10;">
+                    <Label style="-fx-text-fill: #cbd5e1; -fx-font-weight: bold; -fx-font-size: 14px;" text="Select Period:" />
+                    <ComboBox fx:id="cmbYear" prefHeight="35" prefWidth="150" promptText="Year" />
+                    <ComboBox fx:id="cmbMonth" prefHeight="35" prefWidth="180" promptText="Month" />
+                    <Button fx:id="btnGenerateReport" onAction="#btnGenerateReportOnAction" prefHeight="35" prefWidth="150" style="-fx-background-color: #ffa500; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6; -fx-font-size: 13px;" text="Generate Report" />
+                </HBox>
+
+                <GridPane hgap="15" vgap="15">
+                    <VBox prefWidth="300" spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                        <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 13px; -fx-font-weight: bold;" text="Total Orders" />
+                        <Label fx:id="lblTotalOrders" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #3b82f6;" text="0" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="📦 Orders placed" />
+                    </VBox>
+
+                    <VBox prefWidth="300" spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 13px; -fx-font-weight: bold;" text="Total Revenue" />
+                        <Label fx:id="lblTotalRevenue" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #42B028;" text="Rs. 0.00" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="💰 Revenue generated" />
+                    </VBox>
+
+                    <VBox prefWidth="300" spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                        <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 13px; -fx-font-weight: bold;" text="Average Order Value" />
+                        <Label fx:id="lblAverageOrderValue" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #ffa500;" text="Rs. 0.00" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="📊 Per order average" />
+                    </VBox>
+
+                    <VBox prefWidth="300" spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 20; -fx-background-radius: 10;" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                        <Label style="-fx-text-fill: #94a3b8; -fx-font-size: 13px; -fx-font-weight: bold;" text="Unique Customers" />
+                        <Label fx:id="lblUniqueCustomers" style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #a855f7;" text="0" />
+                        <Label style="-fx-font-size: 12px; -fx-text-fill: #64748b;" text="👥 Active customers" />
+                    </VBox>
+
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="280" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="280" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="280" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="280" />
+                    </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints />
+               </rowConstraints>
+                </GridPane>
+
+                <HBox spacing="15">
+                    <VBox spacing="15" HBox.hgrow="ALWAYS">
+
+                        <VBox spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 15; -fx-background-radius: 10;">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="📦 Orders" />
+                            <Separator style="-fx-background-color: #334155;" />
+                            <TableView fx:id="tblMonthlyOrders" prefHeight="350" style="-fx-background-color: #334155; -fx-background-radius: 8;">
+                                <columns>
+                                    <TableColumn fx:id="colOrderId" prefWidth="250.0" text="Order ID" />
+                                    <TableColumn fx:id="colOrderDate" prefWidth="224.7999267578125" text="Date" />
+                                    <TableColumn fx:id="colOrderCustomer" prefWidth="252.0" text="Customer" />
+                                    <TableColumn fx:id="colOrderTotal" prefWidth="300.0" text="Total Amount" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                    </VBox>
+
+                    <VBox spacing="15" HBox.hgrow="ALWAYS">
+
+                        <VBox spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 15; -fx-background-radius: 10;">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="⭐ Top Customers" />
+                            <Separator style="-fx-background-color: #334155;" />
+                            <TableView fx:id="tblTopCustomers" prefHeight="165" style="-fx-background-color: #334155; -fx-background-radius: 8;">
+                                <columns>
+                                    <TableColumn fx:id="colCustomerId" prefWidth="77.60004353523254" text="ID" />
+                                    <TableColumn fx:id="colCustomerName" prefWidth="123.199951171875" text="Name" />
+                                    <TableColumn fx:id="colCustomerOrders" prefWidth="85.59996032714844" text="Orders" />
+                                    <TableColumn fx:id="colCustomerSpent" prefWidth="88.8000549316406" text="Total Spent" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <VBox spacing="10" style="-fx-background-color: #1e293b; -fx-padding: 15; -fx-background-radius: 10;">
+                            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;" text="📋 Order Status" />
+                            <Separator style="-fx-background-color: #334155;" />
+                            <GridPane hgap="20" style="-fx-padding: 10;" vgap="15">
+                                <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #94a3b8; -fx-font-weight: bold;" text="Pending" />
+                                    <Label fx:id="lblPendingOrders" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #fbbf24;" text="0" />
+                                </VBox>
+                                <VBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #94a3b8; -fx-font-weight: bold;" text="Processing" />
+                                    <Label fx:id="lblProcessingOrders" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #3b82f6;" text="0" />
+                                </VBox>
+                                <VBox spacing="5" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                    <Label style="-fx-font-size: 12px; -fx-text-fill: #94a3b8; -fx-font-weight: bold;" text="Delivered" />
+                                    <Label fx:id="lblDeliveredOrders" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #42B028;" text="0" />
+                                </VBox>
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                    <ColumnConstraints hgrow="ALWAYS" />
+                                </columnConstraints>
+                        <rowConstraints>
+                           <RowConstraints />
+                        </rowConstraints>
+                            </GridPane>
+                        </VBox>
+
+                    </VBox>
+                </HBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+</BorderPane>

@@ -1,0 +1,114 @@
+<jasperReport name="allCustomers" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2c34144b-a7dd-4c1c-abaa-8ab844d0e771">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MobilePhone"/>
+	<query language="SQL"><![CDATA[SELECT * FROM Customer]]></query>
+	<field name="Customer_ID" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Customer_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="Customer_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<field name="User_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="User_ID"/>
+		<property name="com.jaspersoft.studio.field.label" value="User_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<field name="Name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Name"/>
+		<property name="com.jaspersoft.studio.field.label" value="Name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<field name="Address" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Address"/>
+		<property name="com.jaspersoft.studio.field.label" value="Address"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<field name="Contact" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Contact"/>
+		<property name="com.jaspersoft.studio.field.label" value="Contact"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<field name="Email" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Email"/>
+		<property name="com.jaspersoft.studio.field.label" value="Email"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<field name="NIC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="NIC"/>
+		<property name="com.jaspersoft.studio.field.label" value="NIC"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="Customer"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="100" splitType="Stretch">
+		<element kind="staticText" uuid="2152686c-5535-4640-8359-b71c7f880607" x="0" y="20" width="555" height="35" forecolor="#1B4F72" fontName="Arial" fontSize="24.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Smart Way Mobile]]></text>
+		</element>
+		<element kind="staticText" uuid="c7d577f1-1cc8-4330-8af3-8fd79afb86b9" x="0" y="58" width="555" height="25" forecolor="#5D6D7E" fontName="Arial" fontSize="14.0" italic="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[All Customer Report]]></text>
+		</element>
+	</title>
+	<pageHeader height="50" splitType="Stretch">
+		<element kind="rectangle" uuid="e4e839d8-9c5c-420c-94fa-7090544f2c9f" x="8" y="0" width="547" height="40" backcolor="#DADEE8"/>
+		<element kind="staticText" uuid="c3d59dea-2351-4841-bf16-bd89d78c315b" x="10" y="5" width="200" height="30" forecolor="#34495E" fontName="Arial" fontSize="9.0" vTextAlign="Top">
+			<text><![CDATA[Smart Way Mobile
+Rathnapura, Sri Lanka
+Tel: +94 XX XXX XXXX]]></text>
+		</element>
+	</pageHeader>
+	<columnHeader height="51" splitType="Stretch">
+		<element kind="rectangle" uuid="7aceb514-6343-4b94-a95b-ed76ea268b88" x="8" y="0" width="547" height="31" backcolor="#254970"/>
+		<element kind="staticText" uuid="76d9ea2b-8acc-4f35-b497-a8b7d5fbf64e" x="21" y="6" width="39" height="22" forecolor="#FFFCFC" backcolor="#C9AEAD" bold="true" hTextAlign="Center">
+			<text><![CDATA[ID]]></text>
+			<box>
+				<pen lineWidth="0.0" lineStyle="Solid"/>
+			</box>
+		</element>
+		<element kind="staticText" uuid="cbcb7c6c-0576-46a4-a224-067847292d78" x="80" y="6" width="44" height="30" forecolor="#FFFFFF" bold="true" hTextAlign="Center">
+			<text><![CDATA[Name]]></text>
+		</element>
+		<element kind="staticText" uuid="867cb301-b1fc-44d1-870b-f806c2e371a4" x="140" y="5" width="60" height="30" forecolor="#FFFFFF" bold="true" hTextAlign="Center">
+			<text><![CDATA[Addres]]></text>
+		</element>
+		<element kind="staticText" uuid="ed696189-4fac-419a-80c8-f051fb99f1bb" x="222" y="5" width="60" height="30" forecolor="#FFFFFF" bold="true" hTextAlign="Center">
+			<text><![CDATA[NIC]]></text>
+		</element>
+		<element kind="staticText" uuid="dda0fca4-bc7b-41e4-b08a-d0ee39307897" x="320" y="5" width="60" height="30" forecolor="#FFFFFF" bold="true" hTextAlign="Center">
+			<text><![CDATA[Contact]]></text>
+		</element>
+		<element kind="staticText" uuid="9a03632c-25a8-47b5-bffc-357cbf5ea88c" x="444" y="4" width="50" height="30" forecolor="#FFFFFF" bold="true" hTextAlign="Center">
+			<text><![CDATA[Email]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="54" splitType="Stretch">
+			<element kind="textField" uuid="7b298a66-f0a9-43cf-870f-0b9dade8c4f6" x="17" y="2" width="39" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{Customer_ID}]]></expression>
+			</element>
+			<element kind="textField" uuid="0a5d2594-168b-4a83-b833-44e09fbf8142" x="78" y="2" width="44" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{Name}]]></expression>
+			</element>
+			<element kind="textField" uuid="6b59b1eb-b63f-40c0-b439-35f7114f44f3" x="139" y="3" width="60" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{Address}]]></expression>
+			</element>
+			<element kind="textField" uuid="a40c4cf3-6aa2-4f5c-af49-6e08cfa80443" x="223" y="2" width="81" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{NIC}]]></expression>
+			</element>
+			<element kind="textField" uuid="71f69c35-718e-4703-9caf-d53cc0f47c2d" x="320" y="3" width="60" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{Contact}]]></expression>
+			</element>
+			<element kind="textField" uuid="18c3c573-4afb-417c-9c00-bf8121f59ba2" x="400" y="3" width="155" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{Email}]]></expression>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="55" splitType="Stretch">
+		<element kind="staticText" uuid="37168101-23f6-4fae-b679-fa6de22520ee" x="160" y="5" width="200" height="25" forecolor="#2E86C1" fontName="Arial" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Thank You!]]></text>
+		</element>
+	</columnFooter>
+	<pageFooter height="54" splitType="Stretch">
+		<element kind="staticText" uuid="b24b7af6-10d7-4ff0-bd64-2de5ce453961" x="10" y="10" width="250" height="15" forecolor="#7F8C8D" fontName="Arial" fontSize="8.0" italic="true" vTextAlign="Middle">
+			<text><![CDATA[© 2026 Smart Way Mobile - Confidential]]></text>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>
