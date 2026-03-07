@@ -69,15 +69,4 @@ public class Customer {
         this.nic = nic;
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId='" + customerId + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", contact='" + contact + '\'' +
-                ", email='" + email + '\'' +
-                ", nic='" + nic + '\'' +
-                '}';
-    }
 }

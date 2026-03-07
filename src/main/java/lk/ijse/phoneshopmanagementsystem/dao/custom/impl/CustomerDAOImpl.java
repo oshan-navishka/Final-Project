@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 public class CustomerDAOImpl implements CustomerDAO {
 
+    @Override
     public boolean save(Customer customerDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO Customer VALUES (?,?,?,?,?,?,?)",customerDTO.getCustomerId(),
                 null,
@@ -28,6 +29,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         );
     }
 
+    @Override
     public Customer search(String customerId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Customer WHERE Customer_ID=?", customerId);
 
@@ -44,6 +46,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return null;
     }
 
+    @Override
     public ArrayList<Customer> searchByText(String text) throws SQLException, ClassNotFoundException {
         String search = "%" + text + "%";
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Customer WHERE Customer_ID LIKE ? OR Name LIKE ? OR " +
@@ -63,6 +66,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return customersList;
     }
 
+    @Override
     public boolean update(Customer customerDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE Customer SET Name=?, Address=?, Contact=?, Email=?, NIC=? WHERE Customer_ID = ?",
                 customerDTO.getName(),
@@ -74,10 +78,12 @@ public class CustomerDAOImpl implements CustomerDAO {
         );
     }
 
+    @Override
     public boolean delete(String customerId) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM Customer WHERE Customer_ID=?", customerId);
     }
 
+    @Override
     public ArrayList<Customer> getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Customer");
         ArrayList<Customer> customerList = new ArrayList<>();
@@ -96,6 +102,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return  customerList;
     }
 
+    @Override
     public String getNextID() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT Customer_ID FROM Customer ORDER BY Customer_ID DESC LIMIT 1");
 
@@ -110,6 +117,7 @@ public class CustomerDAOImpl implements CustomerDAO {
         return "C001";
     }
 
+    @Override
     public void printReports() throws SQLException, JRException, ClassNotFoundException {
 
         Connection conn = DBConnection.getDbConnection().getConnection();

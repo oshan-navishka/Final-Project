@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Map;
 
 public class DashboardDAOImpl implements DashboardDAO {
+
+    @Override
     public double getTodaySales() throws SQLException, ClassNotFoundException {
         LocalDate today = LocalDate.now();
 
@@ -25,6 +27,7 @@ public class DashboardDAOImpl implements DashboardDAO {
         return 0.0;
     }
 
+    @Override
     public int getTotalOrdersCount() throws SQLException, ClassNotFoundException {
         LocalDate today = LocalDate.now();
 
@@ -39,6 +42,7 @@ public class DashboardDAOImpl implements DashboardDAO {
         return 0;
     }
 
+    @Override
     public int getLowStockCount() throws SQLException, ClassNotFoundException {
        ResultSet rs =  CrudUtil.execute("SELECT COUNT(*) as low_stock_count FROM Item WHERE Quantity < 10");
 
@@ -48,6 +52,7 @@ public class DashboardDAOImpl implements DashboardDAO {
         return 0;
     }
 
+    @Override
     public List<Map<String, Object>> getRecentOrders() throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> orders = new ArrayList<>();
 
@@ -66,6 +71,7 @@ public class DashboardDAOImpl implements DashboardDAO {
         return orders;
     }
 
+    @Override
     public List<Map<String, Object>> getLast7DaysSales() throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> salesData = new ArrayList<>();
 
@@ -88,6 +94,7 @@ public class DashboardDAOImpl implements DashboardDAO {
         return salesData;
     }
 
+    @Override
     public List<Map<String, Object>> getTopSellingItems() throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> items = new ArrayList<>();
 
@@ -106,6 +113,7 @@ public class DashboardDAOImpl implements DashboardDAO {
         return items;
     }
 
+    @Override
     public int getPendingRepairsCount() throws SQLException, ClassNotFoundException {
        ResultSet rs = CrudUtil.execute("SELECT COUNT(*) as pending_repairs FROM Repair WHERE Status != 'Completed'");
 

@@ -12,11 +12,9 @@ import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.CustomerBO;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.PlaceOrderBO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.OrderDetailDAOImpl;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.OrdersDAOImpl;
+import lk.ijse.phoneshopmanagementsystem.bo.custom.QueryBO;
+import lk.ijse.phoneshopmanagementsystem.bo.custom.impl.QueryBOImpl;
 import lk.ijse.phoneshopmanagementsystem.dto.*;
-import lk.ijse.phoneshopmanagementsystem.entity.Customer;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -63,11 +61,9 @@ public class OrdersController implements Initializable {
     private final ObservableList<OrderTableDTO> ordersList = FXCollections.observableArrayList();
     private final ObservableList<OrderDetailDTO> orderItemsList = FXCollections.observableArrayList();
 
-    //private CustomerDAOImpl customerDAO = new CustomerDAOImpl();
-    //private final OrderDetailDAOImpl orderDetailDAO = new OrderDetailDAOImpl();
-    //private final OrdersDAOImpl ordersDAO = new OrdersDAOImpl();
     PlaceOrderBO placeOrderBO = (PlaceOrderBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.PlaceOrder);
     CustomerBO customerBO = (CustomerBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Customer);
+    QueryBO queryBO = (QueryBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Query);
 
 
     private String selectedOrderId = null;
@@ -266,10 +262,9 @@ public class OrdersController implements Initializable {
                 cmbDetailStatus.setValue(order.getOrderStatus());
 
                 orderItemsList.clear();
-                ArrayList<OrderDetailDTO> items = placeOrderBO.getOrderDetails(orderId);
+                ArrayList<OrderDetailDTO> items = queryBO.getOrderDetails(orderId);
                 orderItemsList.addAll(items);
 
-                // Show details, hide placeholder
                 vboxOrderDetails.setVisible(true);
                 vboxNoSelection.setVisible(false);
             }

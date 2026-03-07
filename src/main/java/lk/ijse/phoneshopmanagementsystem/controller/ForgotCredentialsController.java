@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.UserBO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.UserDAOImpl;
 
 import java.sql.SQLException;
 
@@ -19,7 +18,6 @@ public class ForgotCredentialsController {
     @FXML private PasswordField txtNewPassword;
     @FXML private PasswordField txtConfirmPassword;
 
-    //private final UserDAOImpl userDAO = new UserDAOImpl();
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.User);
 
     @FXML

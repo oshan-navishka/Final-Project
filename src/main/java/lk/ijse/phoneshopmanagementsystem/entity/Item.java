@@ -100,17 +100,5 @@ public class Item {
         this.supplierId = supplierId;
     }
 
-    @Override
-    public String toString() {
-        return "ItemDTO{" +
-                "itemCode='" + itemCode + '\'' +
-                ", description='" + description + '\'' +
-                ", brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", unitPrice=" + unitPrice +
-                ", qtyOnHand=" + qtyOnHand +
-                ", category='" + category + '\'' +
-                ", supplierId='" + supplierId + '\'' +
-                '}';
-    }
+
 }

@@ -1,7 +1,6 @@
 package lk.ijse.phoneshopmanagementsystem.dao.custom;
 
 import lk.ijse.phoneshopmanagementsystem.dao.CrudDAO;
-import lk.ijse.phoneshopmanagementsystem.dto.CustomerDTO;
 import lk.ijse.phoneshopmanagementsystem.entity.Customer;
 import net.sf.jasperreports.engine.*;
 

@@ -9,8 +9,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.UserBO;
-import lk.ijse.phoneshopmanagementsystem.bo.custom.impl.UserBOImpl;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.UserDAOImpl;
 import lk.ijse.phoneshopmanagementsystem.dto.UserDTO;
 
 import java.net.URL;
@@ -44,7 +42,7 @@ public class UserManagementController implements Initializable {
     @FXML private TableColumn<UserDTO, String> colRole;
 
     private ObservableList<UserDTO> userList = FXCollections.observableArrayList();
-   // private final UserDAOImpl userDAO = new UserDAOImpl();
+
     UserBO userBO = (UserBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.User);
 
     @Override

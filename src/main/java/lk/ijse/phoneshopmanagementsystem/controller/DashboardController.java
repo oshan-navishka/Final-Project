@@ -16,7 +16,6 @@ import javafx.util.Duration;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.DashboardBO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.DashboardDAOImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -56,7 +55,6 @@ public class DashboardController implements Initializable {
 
     private Timeline refreshTimeline;
     private Timeline clockTimeline;
-    //private final DashboardDAOImpl dashboardDAO = new DashboardDAOImpl();
 
     DashboardBO dashboardBO = (DashboardBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.DashBoard);
 

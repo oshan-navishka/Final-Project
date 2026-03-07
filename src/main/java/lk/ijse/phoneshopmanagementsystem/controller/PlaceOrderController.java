@@ -12,15 +12,11 @@ import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.CustomerBO;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.ItemBO;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.PlaceOrderBO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.CustomerDAOImpl;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.ItemDAOImpl;
 import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.OrdersDAOImpl;
 import lk.ijse.phoneshopmanagementsystem.dto.PlaceOrderDTO;
 import lk.ijse.phoneshopmanagementsystem.dto.OrderDetailDTO;
 import lk.ijse.phoneshopmanagementsystem.dto.CustomerDTO;
 import lk.ijse.phoneshopmanagementsystem.dto.ItemDTO;
-import lk.ijse.phoneshopmanagementsystem.entity.Customer;
-import lk.ijse.phoneshopmanagementsystem.entity.Item;
 
 import java.net.URL;
 import java.sql.SQLException;

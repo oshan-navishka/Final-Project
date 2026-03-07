@@ -21,8 +21,6 @@ public interface PlaceOrderBO extends SuperBO {
 
     public String getNextOrderDetailID() throws SQLException, ClassNotFoundException;
 
-    public ArrayList<OrderDetailDTO> getOrderDetails(String orderId) throws SQLException, ClassNotFoundException;
-
     public ArrayList<PlaceOrderDTO> getAllOrders() throws SQLException, ClassNotFoundException;
 
     public boolean updateOrders(PlaceOrderDTO customerDTO) throws SQLException, ClassNotFoundException;

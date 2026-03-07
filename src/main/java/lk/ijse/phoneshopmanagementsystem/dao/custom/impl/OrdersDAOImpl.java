@@ -2,8 +2,6 @@ package lk.ijse.phoneshopmanagementsystem.dao.custom.impl;
 
 import lk.ijse.phoneshopmanagementsystem.dao.custom.OrdersDAO;
 import lk.ijse.phoneshopmanagementsystem.dbconnection.DBConnection;
-import lk.ijse.phoneshopmanagementsystem.dto.OrderDetailDTO;
-import lk.ijse.phoneshopmanagementsystem.dto.PlaceOrderDTO;
 import lk.ijse.phoneshopmanagementsystem.entity.OrderDetails;
 import lk.ijse.phoneshopmanagementsystem.entity.PlaceOrder;
 import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
@@ -17,9 +15,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class OrdersDAOImpl implements OrdersDAO {
+
     OrderDetailDAOImpl od = new OrderDetailDAOImpl();
 
+    QueryDAOImpl queryDAO = new QueryDAOImpl();
 
+
+    @Override
     public ArrayList<PlaceOrder> getAll() throws SQLException, ClassNotFoundException {
         ResultSet rs = CrudUtil.execute("SELECT * FROM Orders ORDER BY Order_ID DESC");
 
@@ -48,6 +50,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         return false;
     }
 
+    @Override
     public String getNextID() throws SQLException, ClassNotFoundException {
         ResultSet rs = CrudUtil.execute("SELECT Order_ID FROM Orders ORDER BY Order_ID DESC LIMIT 1");
 
@@ -66,6 +69,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         return "O001";
     }
 
+    @Override
     public boolean save(PlaceOrder orderDTO) throws SQLException, ClassNotFoundException {
         Connection conn = DBConnection.getDbConnection().getConnection();
         try {
@@ -90,7 +94,7 @@ public class OrdersDAOImpl implements OrdersDAO {
             }
 
             for (OrderDetails detail : orderDTO.getDetails()) {
-                String orderDetailId = od.generateOrderDetailId();
+                String orderDetailId = od.getNextID();
 
                 boolean isDetailSaved = CrudUtil.execute(
                         "INSERT INTO Order_Details (Order_Detail_ID, Order_ID, Item_ID, Quantity, Unit_price, Sub_total) VALUES (?, ?, ?, ?, ?, ?)",
@@ -130,6 +134,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         }
     }
 
+    @Override
     public PlaceOrder search(String orderId)
             throws SQLException, ClassNotFoundException {
 
@@ -141,7 +146,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         if (rs.next()) {
 
             ArrayList<OrderDetails> details =
-                    od.getOrderDetails(orderId);
+                    queryDAO.getOrderDetails(orderId);
 
             PlaceOrder order = new PlaceOrder(
                     rs.getString("Order_ID"),
@@ -159,7 +164,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         return null;
     }
 
-
+    @Override
     public boolean update(String status, String orderId) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE Orders SET Order_status = ? WHERE Order_ID = ?",
                 status, orderId
@@ -167,12 +172,13 @@ public class OrdersDAOImpl implements OrdersDAO {
 
     }
 
+    @Override
     public boolean cancelOrder(String orderId) throws SQLException, ClassNotFoundException {
         Connection conn = DBConnection.getDbConnection().getConnection();
         try {
             conn.setAutoCommit(false);
 
-            ArrayList<OrderDetails> details = od.getOrderDetails(orderId);
+            ArrayList<OrderDetails> details = queryDAO.getOrderDetails(orderId);
 
             for (OrderDetails detail : details) {
 
@@ -202,6 +208,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         }
     }
 
+    @Override
     public String getCustomerName(String customerId) throws SQLException, ClassNotFoundException {
         ResultSet rs = CrudUtil.execute("SELECT Name FROM Customer WHERE Customer_ID = ?", customerId);
         if (rs.next()) {
@@ -210,6 +217,7 @@ public class OrdersDAOImpl implements OrdersDAO {
         return "Unknown Customer";
     }
 
+    @Override
     public void printReports() throws SQLException, JRException, ClassNotFoundException {
 
         Connection conn = DBConnection.getDbConnection().getConnection();

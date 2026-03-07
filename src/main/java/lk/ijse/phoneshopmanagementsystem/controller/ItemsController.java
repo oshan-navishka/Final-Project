@@ -10,12 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.ItemBO;
-import lk.ijse.phoneshopmanagementsystem.bo.custom.impl.ItemBOImpl;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.ItemDAOImpl;
-import lk.ijse.phoneshopmanagementsystem.dto.CustomerDTO;
 import lk.ijse.phoneshopmanagementsystem.dto.ItemDTO;
-import lk.ijse.phoneshopmanagementsystem.entity.Customer;
-import lk.ijse.phoneshopmanagementsystem.entity.Item;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -79,7 +74,6 @@ public class ItemsController implements Initializable {
     private TableColumn<ItemDTO, String> colSupplierId;
 
     private final ObservableList<ItemDTO> itemList = FXCollections.observableArrayList();
-   //private final ItemDAOImpl itemDAO = new ItemDAOImpl();
    ItemBO  itemBO = (ItemBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Item);
 
     @Override

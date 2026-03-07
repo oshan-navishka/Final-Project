@@ -13,6 +13,7 @@ import java.util.Map;
 
 public class ReportDAOImpl implements ReportDAO {
 
+    @Override
     public Map<String, Object> getMonthlySummary(int year, int month) throws SQLException, ClassNotFoundException {
         Map<String, Object> summary = new HashMap<>();
 
@@ -32,6 +33,7 @@ public class ReportDAOImpl implements ReportDAO {
         return summary;
     }
 
+    @Override
     public Map<String, Object> getYearlySummary(int year) throws SQLException, ClassNotFoundException {
         Map<String, Object> summary = new HashMap<>();
 
@@ -55,85 +57,7 @@ public class ReportDAOImpl implements ReportDAO {
         return summary;
     }
 
-    /*public List<Map<String, Object>> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> orders = new ArrayList<>();
-
-        ResultSet rs = CrudUtil.execute("SELECT " +
-                "o.Order_ID, o.Order_date, o.Total_amount, " +
-                "c.Name as customer_name " +
-                "FROM Orders o " +
-                "JOIN Customer c ON o.Customer_ID = c.Customer_ID " +
-                "WHERE YEAR(o.Order_date) = ? AND MONTH(o.Order_date) = ? " +
-                "ORDER BY o.Order_date DESC",
-                year, month
-        );
-
-        while (rs.next()) {
-            Map<String, Object> order = new HashMap<>();
-            order.put("orderId", rs.getString("Order_ID"));
-            order.put("orderDate", rs.getDate("Order_date"));
-            order.put("customerName", rs.getString("customer_name"));
-            order.put("totalAmount", rs.getDouble("Total_amount"));
-            orders.add(order);
-        }
-
-        return orders;
-    }*/
-
-   /* public List<Map<String, Object>> getYearlyOrders(int year) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> orders = new ArrayList<>();
-
-        ResultSet rs = CrudUtil.execute("SELECT " +
-                "o.Order_ID, o.Order_date, o.Total_amount, " +
-                "c.Name as customer_name " +
-                "FROM Orders o " +
-                "JOIN Customer c ON o.Customer_ID = c.Customer_ID " +
-                "WHERE YEAR(o.Order_date) = ? " +
-                "ORDER BY o.Order_date DESC",
-                year
-        );
-
-        while (rs.next()) {
-            Map<String, Object> order = new HashMap<>();
-            order.put("orderId", rs.getString("Order_ID"));
-            order.put("orderDate", rs.getDate("Order_date"));
-            order.put("customerName", rs.getString("customer_name"));
-            order.put("totalAmount", rs.getDouble("Total_amount"));
-            orders.add(order);
-        }
-
-        return orders;
-    }*/
-
-    /*public List<Map<String, Object>> getTopCustomers(int year, int limit) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> topCustomers = new ArrayList<>();
-
-        ResultSet rs = CrudUtil.execute("SELECT " +
-                "c.Customer_ID, c.Name, c.Contact, " +
-                "COUNT(o.Order_ID) as order_count, " +
-                "SUM(o.Total_amount) as total_spent " +
-                "FROM Customer c " +
-                "JOIN Orders o ON c.Customer_ID = o.Customer_ID " +
-                "WHERE YEAR(o.Order_date) = ? " +
-                "GROUP BY c.Customer_ID, c.Name, c.Contact " +
-                "ORDER BY total_spent DESC " +
-                "LIMIT ?",
-                year, limit
-        );
-
-        while (rs.next()) {
-            Map<String, Object> customer = new HashMap<>();
-            customer.put("customerId", rs.getString("Customer_ID"));
-            customer.put("name", rs.getString("Name"));
-            customer.put("contact", rs.getString("Contact"));
-            customer.put("orderCount", rs.getInt("order_count"));
-            customer.put("totalSpent", rs.getDouble("total_spent"));
-            topCustomers.add(customer);
-        }
-
-        return topCustomers;
-    }*/
-
+    @Override
     public Map<String, Integer> getOrderStatusBreakdown(int year) throws SQLException, ClassNotFoundException {
         Map<String, Integer> statusCount = new HashMap<>();
 
@@ -151,6 +75,7 @@ public class ReportDAOImpl implements ReportDAO {
         return statusCount;
     }
 
+    @Override
     public List<Integer> getAvailableYears() throws SQLException, ClassNotFoundException {
         List<Integer> years = new ArrayList<>();
 

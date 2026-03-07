@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemDAOImpl implements ItemDAO{
+    @Override
     public boolean save(Item itemDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO Item (Item_ID, Model, Brand, Category, Supplier_ID, Description, " +
                         "Unit_price, Quantity) VALUES(?,?,?,?,?,?,?,?)",
@@ -30,6 +31,7 @@ public class ItemDAOImpl implements ItemDAO{
         );
     }
 
+    @Override
     public String getNextID() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Item ORDER BY Item_ID DESC LIMIT 1");
 
@@ -49,6 +51,7 @@ public class ItemDAOImpl implements ItemDAO{
         }
     }
 
+    @Override
     public Item search(String itemCode) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Item WHERE Item_ID = ?", itemCode);
 
@@ -69,6 +72,7 @@ public class ItemDAOImpl implements ItemDAO{
         return null;
     }
 
+    @Override
     public boolean update(Item itemDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE Item SET Model=?, Brand=?, Category=?, Supplier_ID=?, Description=?, " +
                         "Unit_price=?, Quantity=? WHERE Item_ID=?",
@@ -83,10 +87,12 @@ public class ItemDAOImpl implements ItemDAO{
         );
     }
 
+    @Override
     public boolean delete(String itemCode) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM Item WHERE Item_ID = ?", itemCode);
     }
 
+    @Override
     public ArrayList<Item> getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Item");
         ArrayList<Item> itemSet = new ArrayList<>();
@@ -106,6 +112,7 @@ public class ItemDAOImpl implements ItemDAO{
         return itemSet;
     }
 
+    @Override
     public void printReports() throws SQLException, JRException, ClassNotFoundException {
 
         Connection conn = DBConnection.getDbConnection().getConnection();

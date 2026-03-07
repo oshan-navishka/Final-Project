@@ -2,8 +2,6 @@ package lk.ijse.phoneshopmanagementsystem.dao.custom.impl;
 
 import lk.ijse.phoneshopmanagementsystem.dao.custom.SupplierDAO;
 import lk.ijse.phoneshopmanagementsystem.dbconnection.DBConnection;
-import lk.ijse.phoneshopmanagementsystem.dto.OrderDetailDTO;
-import lk.ijse.phoneshopmanagementsystem.dto.SupplierDTO;
 import lk.ijse.phoneshopmanagementsystem.entity.Supplier;
 import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 import net.sf.jasperreports.engine.*;
@@ -14,10 +12,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SupplierDAOImpl implements SupplierDAO {
 
+    @Override
     public String getNextID() throws SQLException, ClassNotFoundException {
         ResultSet rst = CrudUtil.execute("SELECT supplier_id FROM supplier ORDER BY supplier_id DESC LIMIT 1");
 
@@ -31,6 +29,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         return "S001";
     }
 
+    @Override
     public boolean save(Supplier  supplierDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("INSERT INTO supplier VALUES (?,?,?,?,?,?)",
                 supplierDTO.getSupplierId(),
@@ -42,6 +41,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         );
     }
 
+    @Override
     public boolean update(Supplier  supplierDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("UPDATE supplier SET name=?, company=?, address=?, contact=?, email=? WHERE supplier_id=?",
                 supplierDTO.getName(),
@@ -53,10 +53,12 @@ public class SupplierDAOImpl implements SupplierDAO {
         );
     }
 
+    @Override
     public boolean delete(String id) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute("DELETE FROM supplier WHERE supplier_id=?", id);
     }
 
+    @Override
     public ArrayList<Supplier> getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM supplier");
         ArrayList<Supplier> supplierList = new ArrayList<>();
@@ -75,6 +77,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         return supplierList;
     }
 
+    @Override
     public Supplier search(String supplierId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute(
                 "SELECT * FROM Supplier WHERE supplier_id=?", supplierId
@@ -93,6 +96,7 @@ public class SupplierDAOImpl implements SupplierDAO {
         return null;
     }
 
+    @Override
     public void printReports() throws SQLException, JRException, ClassNotFoundException {
 
         Connection conn = DBConnection.getDbConnection().getConnection();

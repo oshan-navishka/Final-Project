@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.RepairBO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.RepairDAOImpl;
 import lk.ijse.phoneshopmanagementsystem.dto.RepairDTO;
 
 import java.io.IOException;
@@ -90,8 +89,6 @@ public class RepairController implements Initializable {
     @FXML
     private TextField txtDeviceType;
 
-   /* @FXML
-    private TextArea txtIssueDescription;*/
 
     @FXML
     private TextField txtRepairCost;
@@ -101,8 +98,6 @@ public class RepairController implements Initializable {
 
     @FXML
     private TextField txtSearch;
-
-    //private final RepairDAOImpl repairDAO = new RepairDAOImpl();
 
     RepairBO repairBO = (RepairBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Repair);
 

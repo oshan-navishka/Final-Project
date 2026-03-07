@@ -1,4 +1,3 @@
-// src/main/java/lk/ijse/phoneshopmanagementsystem/controller/SupplierController.java
 package lk.ijse.phoneshopmanagementsystem.controller;
 
 import javafx.collections.FXCollections;
@@ -11,11 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
-import lk.ijse.phoneshopmanagementsystem.bo.custom.CustomerBO;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.SupplierBO;
-import lk.ijse.phoneshopmanagementsystem.dao.DaoFactory;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.SupplierDAO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.SupplierDAOImpl;
 import lk.ijse.phoneshopmanagementsystem.dto.SupplierDTO;
 
 import java.net.URL;
@@ -43,7 +38,6 @@ public class SupplierController implements Initializable {
     @FXML private TableColumn<SupplierDTO, String> colEmail;
 
     private ObservableList<SupplierDTO> supplierList = FXCollections.observableArrayList();
-    //private final SupplierDAOImpl supplierDAO = new SupplierDAOImpl();
 
     SupplierBO supplierBO = (SupplierBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Supplier);
 
@@ -138,7 +132,7 @@ public class SupplierController implements Initializable {
                 clearFields();
                 loadAllSuppliers();
             } else {
-                //showAlert(Alert.Alert.AlertType.ERROR, "Failed", "Could not save supplier!");
+                showAlert(Alert.AlertType.ERROR, "Failed", "Could not save supplier!");
             }
         } catch (SQLException e) {
             showAlert(Alert.AlertType.ERROR, "Database Error", e.getMessage());
@@ -238,7 +232,7 @@ public class SupplierController implements Initializable {
             txtName.requestFocus();
             return false;
         }
-        if (!txtContact.getText().matches("^0\\d{9}$")) {  // ← මෙතන විතරයි වෙනස්
+        if (!txtContact.getText().matches("^0\\d{9}$")) {
             showAlert(Alert.AlertType.WARNING, "Invalid Contact", "Contact must be 10 digits starting with 0");
             txtContact.requestFocus();
             return false;

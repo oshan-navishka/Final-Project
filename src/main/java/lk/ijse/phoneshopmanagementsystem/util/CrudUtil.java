@@ -3,7 +3,6 @@ package lk.ijse.phoneshopmanagementsystem.util;
 import lk.ijse.phoneshopmanagementsystem.dbconnection.DBConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CrudUtil {

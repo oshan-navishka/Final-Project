@@ -112,15 +112,4 @@ public class OrderDetails {
         this.itemModel = itemModel;
     }
 
-    @Override
-    public String toString() {
-        return "OrderDetailDTO{" +
-                "orderDetailId='" + orderDetailId + '\'' +
-                ", orderId='" + orderId + '\'' +
-                ", itemId='" + itemId + '\'' +
-                ", quantity=" + quantity +
-                ", unitPrice=" + unitPrice +
-                ", subtotal=" + subtotal +
-                '}';
-    }
 }

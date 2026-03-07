@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface DashboardDAO extends CrudDAO<DashboardDAO> {
+
     public double getTodaySales() throws SQLException, ClassNotFoundException;
 
     public int getTotalOrdersCount() throws SQLException, ClassNotFoundException;

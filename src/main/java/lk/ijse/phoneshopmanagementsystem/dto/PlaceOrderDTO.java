@@ -77,4 +77,17 @@ public class PlaceOrderDTO {
     public void setOrderDetails(ArrayList<OrderDetailDTO> orderDetails) {
         this.orderDetails = orderDetails;
     }
+
+    @Override
+    public String toString() {
+        return "PlaceOrderDTO{" +
+                "orderId='" + orderId + '\'' +
+                ", orderDate=" + orderDate +
+                ", totalAmount=" + totalAmount +
+                ", customerId='" + customerId + '\'' +
+                ", employeeId=" + employeeId +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", orderDetails=" + orderDetails +
+                '}';
+    }
 }

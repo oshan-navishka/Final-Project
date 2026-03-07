@@ -7,7 +7,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.UserDAOImpl;
-import lk.ijse.phoneshopmanagementsystem.dto.UserDTO;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -54,11 +53,10 @@ public class LoginController {
 
                 System.out.println("Login Successful! Role: " + loggedUserRole);
 
-                // Role based redirect
                 if ("Admin".equals(user.getRole())) {
-                    App.setRoot("dashboard"); // Admin dashboard - full access
+                    App.setRoot("dashboard");
                 } else if ("Employee".equals(user.getRole())) {
-                    App.setRoot("employeeDashboard"); // Employee dashboard - limited access
+                    App.setRoot("employeeDashboard");
                 } else {
                     showErrorAlert("Invalid user role!");
                 }

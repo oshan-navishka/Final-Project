@@ -40,6 +40,9 @@ public class SupplierDTO {
                 "supplierId='" + supplierId + '\'' +
                 ", name='" + name + '\'' +
                 ", company='" + company + '\'' +
+                ", address='" + address + '\'' +
+                ", contact='" + contact + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

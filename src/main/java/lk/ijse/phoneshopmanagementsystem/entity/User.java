@@ -19,7 +19,6 @@ public class User {
         this.role = role;
     }
 
-    // Getters and Setters
     public String getUserId() { return userId; }
     public void setUserId(String userId) { this.userId = userId; }
 

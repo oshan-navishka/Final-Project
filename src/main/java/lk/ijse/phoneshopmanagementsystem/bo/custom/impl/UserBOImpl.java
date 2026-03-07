@@ -1,26 +1,23 @@
 package lk.ijse.phoneshopmanagementsystem.bo.custom.impl;
 
-import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.UserBO;
 import lk.ijse.phoneshopmanagementsystem.dao.DaoFactory;
 import lk.ijse.phoneshopmanagementsystem.dao.custom.UserDAO;
-import lk.ijse.phoneshopmanagementsystem.dto.ItemDTO;
 import lk.ijse.phoneshopmanagementsystem.dto.UserDTO;
-import lk.ijse.phoneshopmanagementsystem.entity.Item;
 import lk.ijse.phoneshopmanagementsystem.entity.User;
-import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class UserBOImpl implements UserBO {
     UserDAO userDAO = (UserDAO) DaoFactory.getInstance().getDAO(DaoFactory.DAOType.USER);
 
+    @Override
     public String getNextUserID() throws SQLException, ClassNotFoundException {
         return userDAO.getNextID();
     }
 
+    @Override
     public boolean saveUser(UserDTO userDTO) throws SQLException, ClassNotFoundException {
         return userDAO.save(
                 new User(
@@ -34,6 +31,7 @@ public class UserBOImpl implements UserBO {
         );
     }
 
+    @Override
     public boolean updateUser(UserDTO userDTO) throws SQLException, ClassNotFoundException {
         return userDAO.update(
                 new User(
@@ -47,10 +45,12 @@ public class UserBOImpl implements UserBO {
         );
     }
 
+    @Override
     public boolean deleteUser(String userId) throws SQLException, ClassNotFoundException {
         return userDAO.delete(userId);
     }
 
+    @Override
     public ArrayList<UserDTO> getAllUser() throws SQLException, ClassNotFoundException {
         ArrayList<User> userList = userDAO.getAll();
         ArrayList<UserDTO> dtoList = new ArrayList<>();
@@ -71,6 +71,7 @@ public class UserBOImpl implements UserBO {
         return dtoList;
     }
 
+    @Override
     public UserDTO searchUser(String userId) throws SQLException, ClassNotFoundException {
         User user = userDAO.search(userId);
 
@@ -86,6 +87,7 @@ public class UserBOImpl implements UserBO {
         );
     }
 
+    @Override
     public UserDTO validateLogin(String userName, String password)
             throws SQLException, ClassNotFoundException {
 
@@ -103,7 +105,7 @@ public class UserBOImpl implements UserBO {
         );
     }
 
-
+    @Override
     public boolean updateUserCredentials(String currentUsername, String newUsername, String newPassword) throws SQLException, ClassNotFoundException {
         return userDAO.updateUserCredentials(currentUsername, newUsername, newPassword);
     }

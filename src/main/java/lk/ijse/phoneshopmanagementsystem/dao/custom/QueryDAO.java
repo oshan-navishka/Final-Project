@@ -1,16 +1,17 @@
 package lk.ijse.phoneshopmanagementsystem.dao.custom;
 
 import lk.ijse.phoneshopmanagementsystem.dao.SuperDAO;
-import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
+import lk.ijse.phoneshopmanagementsystem.entity.OrderDetails;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public interface QueryDAO extends SuperDAO {
+
+    public ArrayList<OrderDetails> getOrderDetails(String orderId) throws SQLException, ClassNotFoundException;
 
     public List<Map<String, Object>> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException;
 

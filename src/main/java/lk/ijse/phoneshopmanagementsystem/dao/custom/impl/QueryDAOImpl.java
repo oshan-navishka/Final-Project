@@ -1,6 +1,7 @@
 package lk.ijse.phoneshopmanagementsystem.dao.custom.impl;
 
 import lk.ijse.phoneshopmanagementsystem.dao.custom.QueryDAO;
+import lk.ijse.phoneshopmanagementsystem.entity.OrderDetails;
 import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -11,6 +12,34 @@ import java.util.List;
 import java.util.Map;
 
 public class QueryDAOImpl implements QueryDAO {
+
+    @Override
+    public ArrayList<OrderDetails> getOrderDetails(String orderId) throws SQLException, ClassNotFoundException {
+        ResultSet rs = CrudUtil.execute(
+                "SELECT od.*, i.Description, i.Brand, i.Model " +
+                        "FROM Order_Details od " +
+                        "JOIN Item i ON od.Item_ID = i.Item_ID " +
+                        "WHERE od.Order_ID = ?", orderId);
+
+        ArrayList<OrderDetails> detailList = new ArrayList<>();
+        while (rs.next()) {
+            OrderDetails detail = new OrderDetails(
+                    rs.getString("Order_Detail_ID"),
+                    rs.getString("Order_ID"),
+                    rs.getString("Item_ID"),
+                    rs.getInt("Quantity"),
+                    rs.getDouble("Unit_price"),
+                    rs.getDouble("Sub_total"),
+                    rs.getString("Description"),
+                    rs.getString("Brand"),
+                    rs.getString("Model")
+            );
+            detailList.add(detail);
+        }
+        return detailList;
+    }
+
+    @Override
     public List<Map<String, Object>> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> orders = new ArrayList<>();
 
@@ -36,6 +65,7 @@ public class QueryDAOImpl implements QueryDAO {
         return orders;
     }
 
+    @Override
     public List<Map<String, Object>> getYearlyOrders(int year) throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> orders = new ArrayList<>();
 
@@ -61,6 +91,7 @@ public class QueryDAOImpl implements QueryDAO {
         return orders;
     }
 
+    @Override
     public List<Map<String, Object>> getTopCustomers(int year, int limit) throws SQLException, ClassNotFoundException {
         List<Map<String, Object>> topCustomers = new ArrayList<>();
 

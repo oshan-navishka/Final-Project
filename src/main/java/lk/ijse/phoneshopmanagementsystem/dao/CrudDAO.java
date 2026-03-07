@@ -1,7 +1,5 @@
 package lk.ijse.phoneshopmanagementsystem.dao;
 
-import lk.ijse.phoneshopmanagementsystem.dto.CustomerDTO;
-import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

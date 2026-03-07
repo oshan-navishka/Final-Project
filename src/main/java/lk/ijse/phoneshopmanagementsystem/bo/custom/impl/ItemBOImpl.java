@@ -11,8 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ItemBOImpl implements ItemBO {
+
     ItemDAO itemDAO = (ItemDAO) DaoFactory.getInstance().getDAO(DaoFactory.DAOType.ITEM);
 
+    @Override
     public boolean saveItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
         return itemDAO.save(
                 new Item(
@@ -28,10 +30,12 @@ public class ItemBOImpl implements ItemBO {
         );
     }
 
+    @Override
     public String getNextItemID() throws SQLException, ClassNotFoundException {
         return itemDAO.getNextID();
     }
 
+    @Override
     public ItemDTO searchItem(String itemCode) throws SQLException, ClassNotFoundException {
 
         Item item = itemDAO.search(itemCode);
@@ -49,7 +53,7 @@ public class ItemBOImpl implements ItemBO {
         );
     }
 
-
+    @Override
     public boolean updateItem(ItemDTO itemDTO) throws SQLException, ClassNotFoundException {
         return itemDAO.update(
                 new Item(
@@ -65,10 +69,12 @@ public class ItemBOImpl implements ItemBO {
         );
     }
 
+    @Override
     public boolean deleteItem(String itemCode) throws SQLException, ClassNotFoundException {
         return itemDAO.delete(itemCode);
     }
 
+    @Override
     public ArrayList<ItemDTO> getAllItem() throws SQLException, ClassNotFoundException {
 
         ArrayList<Item> itemList = itemDAO.getAll();
@@ -92,7 +98,7 @@ public class ItemBOImpl implements ItemBO {
         return dtoList;
     }
 
-
+    @Override
     public void printItemReports() throws SQLException, JRException, ClassNotFoundException {
 
         itemDAO.printReports();

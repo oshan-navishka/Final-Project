@@ -20,4 +20,17 @@ public class SaleReportDTO {
     public String getProduct() { return product; }
     public int getQuantity() { return quantity; }
     public double getAmount() { return amount; }
+
+    @Override
+    public String toString() {
+        return "SaleReportDTO{" +
+                "orderId='" + orderId + '\'' +
+                ", date='" + date + '\'' +
+                ", customer='" + customer + '\'' +
+                ", product='" + product + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", quantity=" + quantity +
+                ", amount=" + amount +
+                '}';
+    }
 }

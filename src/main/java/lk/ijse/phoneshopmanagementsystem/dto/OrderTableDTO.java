@@ -36,4 +36,17 @@ public class OrderTableDTO {
     public void setTotalAmount(Double totalAmount) { this.totalAmount = totalAmount; }
     public void setStatus(String status) { this.status = status; }
     public void setEmployeeId(Integer employeeId) { this.employeeId = employeeId; }
+
+    @Override
+    public String toString() {
+        return "OrderTableDTO{" +
+                "orderId='" + orderId + '\'' +
+                ", orderDate='" + orderDate + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", totalAmount=" + totalAmount +
+                ", status='" + status + '\'' +
+                ", employeeId=" + employeeId +
+                '}';
+    }
 }

@@ -12,7 +12,6 @@ import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.CustomerBO;
 import lk.ijse.phoneshopmanagementsystem.dto.CustomerDTO;
-import lk.ijse.phoneshopmanagementsystem.entity.Customer;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -139,9 +138,8 @@ public class CustomerController implements Initializable {
 
     @FXML
     void saveCustomer(ActionEvent event) {
-        // Validate karala balanna
         if (!validateInputs()) {
-            return; // Validation fail unoth save wenne na
+            return;
         }
 
         try {
@@ -160,9 +158,7 @@ public class CustomerController implements Initializable {
         }
     }
 
-    // Validation method eka
     private boolean validateInputs() {
-        // Check if required fields are empty
         if (txtName.getText().trim().isEmpty()) {
             new Alert(Alert.AlertType.WARNING, "Name is required!").show();
             txtName.requestFocus();
@@ -182,7 +178,6 @@ public class CustomerController implements Initializable {
             return false;
         }
 
-        // Validate NIC format (Sri Lankan NIC)
         String nic = txtNic.getText().trim();
         System.out.println("NIC Input: '" + nic + "'");
         System.out.println("NIC Length: " + nic.length());
@@ -193,7 +188,6 @@ public class CustomerController implements Initializable {
             return false;
         }
 
-        // Validate Phone number (Sri Lankan format)
         String phone = txtContact.getText().trim();
         if (!phone.matches("^0[0-9]{9}$")) {
             new Alert(Alert.AlertType.WARNING, "Invalid phone number!\nFormat: 0XXXXXXXXX (10 digits)").show();
@@ -201,7 +195,6 @@ public class CustomerController implements Initializable {
             return false;
         }
 
-        // Validate Email (optional but if provided should be valid)
         String email = txtEmail.getText().trim();
         if (!email.isEmpty() && !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
             new Alert(Alert.AlertType.WARNING, "Invalid email format!").show();
@@ -214,7 +207,7 @@ public class CustomerController implements Initializable {
 
     @FXML
     void updateCustomer(ActionEvent event) {
-        if (validateInputs()) {
+        if (!validateInputs()) { // ! එක add කරන්න
             return;
         }
         try {
@@ -223,6 +216,8 @@ public class CustomerController implements Initializable {
                 new Alert(Alert.AlertType.INFORMATION, "Customer updated successfully!").show();
                 loadAllCustomers();
                 clearFields();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Failed to update customer").show();
             }
         } catch (SQLException e) {
             new Alert(Alert.AlertType.ERROR, "Update failed: " + e.getMessage()).show();
@@ -246,7 +241,6 @@ public class CustomerController implements Initializable {
                         clearFields();
                     }
                 } catch (SQLException e) {
-                    // Foreign key error එක catch කරනවා
                     if (e.getErrorCode() == 1451) {
                         new Alert(Alert.AlertType.WARNING,
                                 "Cannot delete! This customer has existing orders.").show();

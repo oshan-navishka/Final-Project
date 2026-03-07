@@ -89,17 +89,4 @@ public class Repair {
     }
 
 
-    @Override
-    public String toString() {
-        return "RepairDTO{" +
-                "repairId='" + repairId + '\'' +
-                ", customerId='" + customerId + '\'' +
-                ", deviceType='" + deviceType + '\'' +
-                ", deviceModel='" + deviceModel + '\'' +
-                ", issueType='" + issueType + '\'' +
-                ", status='" + status + '\'' +
-                ", repairCost=" + repairCost +
-                ", dateReceived='" + dateReceived + '\'' +
-                '}';
-    }
 }

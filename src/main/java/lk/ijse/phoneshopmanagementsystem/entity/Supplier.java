@@ -34,12 +34,5 @@ public class Supplier {
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
 
-    @Override
-    public String toString() {
-        return "SupplierDTO{" +
-                "supplierId='" + supplierId + '\'' +
-                ", name='" + name + '\'' +
-                ", company='" + company + '\'' +
-                '}';
-    }
+
 }

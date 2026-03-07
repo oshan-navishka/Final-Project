@@ -1,7 +1,6 @@
 package lk.ijse.phoneshopmanagementsystem.dao.custom.impl;
 
 import lk.ijse.phoneshopmanagementsystem.dao.custom.RepairDAO;
-import lk.ijse.phoneshopmanagementsystem.dto.RepairDTO;
 import lk.ijse.phoneshopmanagementsystem.entity.Repair;
 import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 
@@ -10,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class RepairDAOImpl implements RepairDAO {
+
+    @Override
     public boolean save(Repair repairDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
                 "INSERT INTO repair (Repair_ID, Customer_ID, Device_Type, Device_Model, Issue_Type, Status, Repair_Cost, Date_Received) VALUES(?,?,?,?,?,?,?,?)",
@@ -24,6 +25,7 @@ public class RepairDAOImpl implements RepairDAO {
         );
     }
 
+    @Override
     public String getNextID() throws SQLException, ClassNotFoundException {
        ResultSet rst = CrudUtil.execute("SELECT Repair_ID FROM Repair ORDER BY Repair_ID DESC LIMIT 1");
 
@@ -38,6 +40,7 @@ public class RepairDAOImpl implements RepairDAO {
         return "R001";
     }
 
+    @Override
     public Repair search(String repairId) throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute(
                 "SELECT * FROM Repair WHERE Repair_ID = ?",
@@ -60,6 +63,7 @@ public class RepairDAOImpl implements RepairDAO {
         return null;
     }
 
+    @Override
     public boolean update(Repair repairDTO) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
                 "UPDATE Repair SET Customer_ID=?, Device_Type=?, Device_Model=?, Issue_Type=?, Status=?, Repair_Cost=?, Date_Received=? WHERE Repair_ID=?",
@@ -74,6 +78,7 @@ public class RepairDAOImpl implements RepairDAO {
         );
     }
 
+    @Override
     public boolean delete(String repairId) throws SQLException, ClassNotFoundException {
         return CrudUtil.execute(
                 "DELETE FROM Repair WHERE Repair_ID = ?",
@@ -81,6 +86,7 @@ public class RepairDAOImpl implements RepairDAO {
         );
     }
 
+    @Override
     public ArrayList<Repair> getAll() throws SQLException, ClassNotFoundException {
         ResultSet resultSet = CrudUtil.execute("SELECT * FROM Repair");
 

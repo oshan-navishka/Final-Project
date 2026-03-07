@@ -9,8 +9,6 @@ import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.QueryBO;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.ReportBO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.QueryDAO;
-import lk.ijse.phoneshopmanagementsystem.dao.custom.impl.ReportDAOImpl;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -48,7 +46,6 @@ public class ReportController implements Initializable {
             "January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"
     };
-    //private final ReportDAOImpl reportDAO = new ReportDAOImpl();
     ReportBO reportBO = (ReportBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Report);
     QueryBO queryBO = (QueryBO) BOFactory.getInstance().getBO(BOFactory.BO_TYPE.Query);
 
@@ -85,7 +82,6 @@ public class ReportController implements Initializable {
     }
 
     private void setupTables() {
-        // Monthly Orders Table
         colOrderId.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty((String) data.getValue().get("orderId")));
         colOrderDate.setCellValueFactory(data ->
@@ -95,7 +91,6 @@ public class ReportController implements Initializable {
         colOrderTotal.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleDoubleProperty((Double) data.getValue().get("totalAmount")).asObject());
 
-        // Top Customers Table
         colCustomerId.setCellValueFactory(data ->
                 new javafx.beans.property.SimpleStringProperty((String) data.getValue().get("customerId")));
         colCustomerName.setCellValueFactory(data ->
