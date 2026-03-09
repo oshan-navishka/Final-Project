@@ -1,7 +1,9 @@
 package lk.ijse.phoneshopmanagementsystem.dao.custom.impl;
 
 import lk.ijse.phoneshopmanagementsystem.dao.custom.QueryDAO;
+import lk.ijse.phoneshopmanagementsystem.entity.MonthlyOrders;
 import lk.ijse.phoneshopmanagementsystem.entity.OrderDetails;
+import lk.ijse.phoneshopmanagementsystem.entity.TopCustomer;
 import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -40,12 +42,11 @@ public class QueryDAOImpl implements QueryDAO {
     }
 
     @Override
-    public List<Map<String, Object>> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> orders = new ArrayList<>();
+    public List<MonthlyOrders> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException {
+        List<MonthlyOrders> orders = new ArrayList<>();
 
-        ResultSet rs = CrudUtil.execute("SELECT " +
-                        "o.Order_ID, o.Order_date, o.Total_amount, " +
-                        "c.Name as customer_name " +
+        ResultSet rs = CrudUtil.execute(
+                "SELECT o.Order_ID, o.Order_date, o.Total_amount, c.Name AS customer_name " +
                         "FROM Orders o " +
                         "JOIN Customer c ON o.Customer_ID = c.Customer_ID " +
                         "WHERE YEAR(o.Order_date) = ? AND MONTH(o.Order_date) = ? " +
@@ -54,24 +55,23 @@ public class QueryDAOImpl implements QueryDAO {
         );
 
         while (rs.next()) {
-            Map<String, Object> order = new HashMap<>();
-            order.put("orderId", rs.getString("Order_ID"));
-            order.put("orderDate", rs.getDate("Order_date"));
-            order.put("customerName", rs.getString("customer_name"));
-            order.put("totalAmount", rs.getDouble("Total_amount"));
-            orders.add(order);
+            orders.add(new MonthlyOrders(
+                    rs.getString("Order_ID"),
+                    rs.getDate("Order_date"),
+                    rs.getString("customer_name"),
+                    rs.getDouble("Total_amount")
+            ));
         }
 
         return orders;
     }
 
     @Override
-    public List<Map<String, Object>> getYearlyOrders(int year) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> orders = new ArrayList<>();
+    public List<MonthlyOrders> getYearlyOrders(int year) throws SQLException, ClassNotFoundException {
+        List<MonthlyOrders> orders = new ArrayList<>();
 
-        ResultSet rs = CrudUtil.execute("SELECT " +
-                        "o.Order_ID, o.Order_date, o.Total_amount, " +
-                        "c.Name as customer_name " +
+        ResultSet rs = CrudUtil.execute(
+                "SELECT o.Order_ID, o.Order_date, o.Total_amount, c.Name AS customer_name " +
                         "FROM Orders o " +
                         "JOIN Customer c ON o.Customer_ID = c.Customer_ID " +
                         "WHERE YEAR(o.Order_date) = ? " +
@@ -80,23 +80,23 @@ public class QueryDAOImpl implements QueryDAO {
         );
 
         while (rs.next()) {
-            Map<String, Object> order = new HashMap<>();
-            order.put("orderId", rs.getString("Order_ID"));
-            order.put("orderDate", rs.getDate("Order_date"));
-            order.put("customerName", rs.getString("customer_name"));
-            order.put("totalAmount", rs.getDouble("Total_amount"));
-            orders.add(order);
+            orders.add(new MonthlyOrders(
+                    rs.getString("Order_ID"),
+                    rs.getDate("Order_date"),
+                    rs.getString("customer_name"),
+                    rs.getDouble("Total_amount")
+            ));
         }
 
         return orders;
     }
 
     @Override
-    public List<Map<String, Object>> getTopCustomers(int year, int limit) throws SQLException, ClassNotFoundException {
-        List<Map<String, Object>> topCustomers = new ArrayList<>();
+    public List<TopCustomer> getTopCustomers(int year, int limit) throws SQLException, ClassNotFoundException {
+        List<TopCustomer> topCustomers = new ArrayList<>();
 
-        ResultSet rs = CrudUtil.execute("SELECT " +
-                        "c.Customer_ID, c.Name, c.Contact, " +
+        ResultSet rs = CrudUtil.execute(
+                "SELECT c.Customer_ID, c.Name, c.Contact, " +
                         "COUNT(o.Order_ID) as order_count, " +
                         "SUM(o.Total_amount) as total_spent " +
                         "FROM Customer c " +
@@ -109,13 +109,13 @@ public class QueryDAOImpl implements QueryDAO {
         );
 
         while (rs.next()) {
-            Map<String, Object> customer = new HashMap<>();
-            customer.put("customerId", rs.getString("Customer_ID"));
-            customer.put("name", rs.getString("Name"));
-            customer.put("contact", rs.getString("Contact"));
-            customer.put("orderCount", rs.getInt("order_count"));
-            customer.put("totalSpent", rs.getDouble("total_spent"));
-            topCustomers.add(customer);
+            topCustomers.add(new TopCustomer(
+                    rs.getString("Customer_ID"),
+                    rs.getString("Name"),
+                    rs.getString("Contact"),
+                    rs.getInt("order_count"),
+                    rs.getDouble("total_spent")
+            ));
         }
 
         return topCustomers;

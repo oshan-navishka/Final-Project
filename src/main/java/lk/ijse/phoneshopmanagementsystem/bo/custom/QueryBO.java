@@ -2,7 +2,9 @@ package lk.ijse.phoneshopmanagementsystem.bo.custom;
 
 import lk.ijse.phoneshopmanagementsystem.bo.SuperBO;
 import lk.ijse.phoneshopmanagementsystem.dto.OrderDetailDTO;
+import lk.ijse.phoneshopmanagementsystem.entity.MonthlyOrders;
 import lk.ijse.phoneshopmanagementsystem.entity.OrderDetails;
+import lk.ijse.phoneshopmanagementsystem.entity.TopCustomer;
 import lk.ijse.phoneshopmanagementsystem.util.CrudUtil;
 
 import java.sql.ResultSet;
@@ -16,11 +18,11 @@ public interface QueryBO extends SuperBO {
 
     public ArrayList<OrderDetailDTO> getOrderDetails(String orderId) throws SQLException, ClassNotFoundException;
 
-    public List<Map<String, Object>> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException;
+    public List<MonthlyOrders> getMonthlyOrders(int year, int month) throws SQLException, ClassNotFoundException;
 
-    public List<Map<String, Object>> getYearlyOrders(int year) throws SQLException, ClassNotFoundException;
+    public List<MonthlyOrders> getYearlyOrders(int year) throws SQLException, ClassNotFoundException;
 
-    public List<Map<String, Object>> getTopCustomers(int year, int limit) throws SQLException, ClassNotFoundException;
+    public List<TopCustomer> getTopCustomers(int year, int limit) throws SQLException, ClassNotFoundException;
 
 
 }

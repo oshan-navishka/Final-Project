@@ -1,5 +1,7 @@
 package lk.ijse.phoneshopmanagementsystem.controller;
 
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +11,8 @@ import lk.ijse.phoneshopmanagementsystem.App;
 import lk.ijse.phoneshopmanagementsystem.bo.BOFactory;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.QueryBO;
 import lk.ijse.phoneshopmanagementsystem.bo.custom.ReportBO;
+import lk.ijse.phoneshopmanagementsystem.entity.MonthlyOrders;
+import lk.ijse.phoneshopmanagementsystem.entity.TopCustomer;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -26,17 +30,17 @@ public class ReportController implements Initializable {
     @FXML private Label lblAverageOrderValue;
     @FXML private Label lblUniqueCustomers;
 
-    @FXML private TableView<Map<String, Object>> tblMonthlyOrders;
-    @FXML private TableColumn<Map<String, Object>, String> colOrderId;
-    @FXML private TableColumn<Map<String, Object>, Date> colOrderDate;
-    @FXML private TableColumn<Map<String, Object>, String> colOrderCustomer;
-    @FXML private TableColumn<Map<String, Object>, Double> colOrderTotal;
+    @FXML private TableView<MonthlyOrders> tblMonthlyOrders;
+    @FXML private TableColumn<MonthlyOrders, String> colOrderId;
+    @FXML private TableColumn<MonthlyOrders, Date> colOrderDate;
+    @FXML private TableColumn<MonthlyOrders, String> colOrderCustomer;
+    @FXML private TableColumn<MonthlyOrders, Double> colOrderTotal;
 
-    @FXML private TableView<Map<String, Object>> tblTopCustomers;
-    @FXML private TableColumn<Map<String, Object>, String> colCustomerId;
-    @FXML private TableColumn<Map<String, Object>, String> colCustomerName;
-    @FXML private TableColumn<Map<String, Object>, Integer> colCustomerOrders;
-    @FXML private TableColumn<Map<String, Object>, Double> colCustomerSpent;
+    @FXML private TableView<TopCustomer> tblTopCustomers;
+    @FXML private TableColumn<TopCustomer, String> colCustomerId;
+    @FXML private TableColumn<TopCustomer, String> colCustomerName;
+    @FXML private TableColumn<TopCustomer, Integer> colCustomerOrders;
+    @FXML private TableColumn<TopCustomer, Double> colCustomerSpent;
 
     @FXML private Label lblPendingOrders;
     @FXML private Label lblProcessingOrders;
@@ -83,22 +87,22 @@ public class ReportController implements Initializable {
 
     private void setupTables() {
         colOrderId.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty((String) data.getValue().get("orderId")));
+                new SimpleStringProperty(data.getValue().getOrderId()));
         colOrderDate.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleObjectProperty<>((Date) data.getValue().get("orderDate")));
+                new SimpleObjectProperty<>(data.getValue().getOrderDate()));
         colOrderCustomer.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty((String) data.getValue().get("customerName")));
+                new SimpleStringProperty(data.getValue().getCustomerName()));
         colOrderTotal.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleDoubleProperty((Double) data.getValue().get("totalAmount")).asObject());
+                new SimpleObjectProperty<>(data.getValue().getTotalAmount()));
 
         colCustomerId.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty((String) data.getValue().get("customerId")));
+                new SimpleStringProperty(data.getValue().getCustomerId()));
         colCustomerName.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleStringProperty((String) data.getValue().get("name")));
+                new SimpleStringProperty(data.getValue().getName()));
         colCustomerOrders.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleIntegerProperty((Integer) data.getValue().get("orderCount")).asObject());
+                new SimpleObjectProperty<>(data.getValue().getOrderCount()));
         colCustomerSpent.setCellValueFactory(data ->
-                new javafx.beans.property.SimpleDoubleProperty((Double) data.getValue().get("totalSpent")).asObject());
+                new SimpleObjectProperty<>(data.getValue().getTotalSpent()));
     }
 
     @FXML
@@ -107,7 +111,7 @@ public class ReportController implements Initializable {
         String monthStr = cmbMonth.getValue();
 
         if (year == null) {
-            showAlert(Alert.AlertType.WARNING, "Warning", "කරුණාකර year එකක් select කරන්න!");
+            showAlert(Alert.AlertType.WARNING, "Warning", "please select Year");
             return;
         }
 
@@ -129,10 +133,10 @@ public class ReportController implements Initializable {
             Map<String, Object> summary = reportBO.getYearlySummary(year);
             updateSummaryLabels(summary);
 
-            List<Map<String, Object>> yearlyOrders = queryBO.getYearlyOrders(year);
+            List<MonthlyOrders> yearlyOrders = queryBO.getYearlyOrders(year);
             tblMonthlyOrders.setItems(FXCollections.observableArrayList(yearlyOrders));
 
-            List<Map<String, Object>> topCustomers = queryBO.getTopCustomers(year, 10);
+            List<TopCustomer> topCustomers = queryBO.getTopCustomers(year, 10);
             tblTopCustomers.setItems(FXCollections.observableArrayList(topCustomers));
 
             loadOrderStatusBreakdown(year);
@@ -150,17 +154,17 @@ public class ReportController implements Initializable {
             Map<String, Object> summary = reportBO.getMonthlySummary(year, month);
             updateSummaryLabels(summary);
 
-            List<Map<String, Object>> monthlyOrders = queryBO.getMonthlyOrders(year, month);
+            List<MonthlyOrders> monthlyOrders = queryBO.getMonthlyOrders(year, month);
             tblMonthlyOrders.setItems(FXCollections.observableArrayList(monthlyOrders));
 
-            List<Map<String, Object>> topCustomers = queryBO.getTopCustomers(year, 10);
+            List<TopCustomer> topCustomers = queryBO.getTopCustomers(year, 10);
             tblTopCustomers.setItems(FXCollections.observableArrayList(topCustomers));
 
             loadOrderStatusBreakdown(year);
 
         } catch (SQLException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Error", "Monthly report load කරන්න බැරි වුණා!");
+            showAlert(Alert.AlertType.ERROR, "Error", "Monthly report doesn't load");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
